@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter} from 'react-router-dom';
+import {
+    withRouter,
+    Link
+} from 'react-router-dom';
+
 import axios from '../../../axios';
 import Post from '../../../components/Post/Post';
 import './Posts.css';
@@ -29,7 +33,7 @@ class Posts extends Component {
             })
             .catch(error => {
                 // console.log(error);
-                this.setState({error: true});
+                this.setState({ error: true });
             });
 
     }
@@ -40,11 +44,13 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
-                    <Post key={post.id}
-                        title={post.title}
-                        author={post.author}
-                        clicked={() => this.clickSelectedHandler(post.id)}
-                    />
+                    <Link to={ '/post/' + post.id } key={post.id}>
+                        <Post
+                            title={post.title}
+                            author={post.author}
+                            clicked={() => this.clickSelectedHandler(post.id)}
+                        />
+                    </Link>
                 );
             });
         }

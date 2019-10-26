@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Axios from '../../../axios';
 import './FullPost.css';
 
 class FullPost extends Component {
@@ -7,10 +7,11 @@ class FullPost extends Component {
         loadedPost: null,
     }
 
-    componentDidUpdate() {
-        if (this.props.id) {
+    componentDidMount() {
+        console.log(this.props.match.params.id);
+        if (this.props.match.params.id) {
             if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+                Axios.get('/posts/' + this.props.match.params.id)
                     .then(response => {
                         // console.log(response);
                         this.setState({ loadedPost: response.data });
@@ -21,7 +22,7 @@ class FullPost extends Component {
 
     deleteHandler = () => {
         if (this.props.id) {
-            axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+            Axios.delete('/posts/' + this.props.id)
             .then(response => {
                 console.log(response);
             });
@@ -29,7 +30,7 @@ class FullPost extends Component {
     }
 
     render() {
-        let post = <p style={{ alignText: 'center' }}>Please select a Post!</p>;
+        let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
         if (this.props.id) {
             post = <p style={{ alignText: 'center' }}>Loading...</p>
         }
