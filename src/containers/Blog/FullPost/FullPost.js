@@ -13,7 +13,7 @@ class FullPost extends Component {
             if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
                 Axios.get('/posts/' + this.props.match.params.id)
                     .then(response => {
-                        // console.log(response);
+                        console.log(response);
                         this.setState({ loadedPost: response.data });
                     });
             }
@@ -32,7 +32,7 @@ class FullPost extends Component {
     render() {
         let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
         if (this.props.id) {
-            post = <p style={{ alignText: 'center' }}>Loading...</p>
+            post = <p style={{ textAlign: 'center' }}>Loading...</p>
         }
         if (this.state.loadedPost) {
             post = (

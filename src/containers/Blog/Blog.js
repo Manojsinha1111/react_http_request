@@ -10,7 +10,7 @@ import {
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
+// import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
     render() {
@@ -21,7 +21,7 @@ class Blog extends Component {
                         <ul>
                             <li>
                                 <NavLink
-                                    to="/"
+                                    to="/posts"
                                     exact
                                     activeClassName='my-active'
                                     activeStyle={{
@@ -35,9 +35,8 @@ class Blog extends Component {
                 </header>
                 {/* <Route path="/" exact render={() => <h1>Home</h1>}/> Render can be used... but this will make the code messy for huge project. so its better to use component */}
                 <Switch>
-                    <Route path='/' exact component={Posts} />
-                    <Route path='/new-post' exact component={NewPost} />
-                    <Route path='/post/:id' exact component={FullPost} />z
+                    <Route path='/new-post' component={NewPost} />
+                    <Route path='/posts' component={Posts} />
                 </Switch>
 
             </div>
