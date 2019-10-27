@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import {
     Route,
     NavLink,
-    Switch
+    Switch,
+    Redirect,
 } from 'react-router-dom';
 
 import './Blog.css';
@@ -36,7 +37,10 @@ class Blog extends Component {
                 {/* <Route path="/" exact render={() => <h1>Home</h1>}/> Render can be used... but this will make the code messy for huge project. so its better to use component */}
                 <Switch>
                     <Route path='/new-post' component={NewPost} />
-                    <Route path='/posts' component={Posts} />
+                    <Route path='/posts/' component={Posts} />
+                    <Redirect from='/' to='/posts/' />
+                    {/* <Route path='/' component={Posts} /> */}
+
                 </Switch>
 
             </div>
